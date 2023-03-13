@@ -8,7 +8,7 @@ void QuickSort::qSortNaive(std::vector<int>& a, size_t beg, size_t end)
 {
 	if (beg < end) {
 		int x = a[(beg + end) / 2];
-		int64_t i = beg, j = end;
+		size_t i = beg, j = end;
 		while (i <= j) {
 			while (a[i] < x)
 				i++;
