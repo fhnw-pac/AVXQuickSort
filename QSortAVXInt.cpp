@@ -5,11 +5,14 @@
 constexpr int elemsIn256 = (sizeof(__m256i) / sizeof(int));
 
 // naive quicksort without tail recursion elimination
-void QuickSort::qSortNaive(std::vector<int>& a, size_t beg, size_t end)
+void QuickSort::qSortNaive(std::vector<int>& a, int64_t beg, int64_t end)
 {
+	assert((beg >= 0) && "beg is negative");
+	assert((end >= 0) && "end is negative");
+
 	if (beg < end) {
-		int x = a[(beg + end) / 2];
-		size_t i = beg, j = end;
+		int x = a[(beg + end) >> 1];
+		int64_t i = beg, j = end;
 		while (i <= j) {
 			while (a[i] < x)
 				i++;
@@ -28,9 +31,12 @@ void QuickSort::qSortNaive(std::vector<int>& a, size_t beg, size_t end)
 	}
 }
 
-void QuickSort::qSortAVX(std::vector<int>& a, size_t beg, size_t end)
+void QuickSort::qSortAVX(std::vector<int>& a, int64_t beg, int64_t end)
 {
-	size_t range = end - beg;
+	assert((beg >= 0) && "beg is negative");
+	assert((end >= 0) && "end is negative");
+
+	int64_t range = end - beg;
 	assert((range > 0) && "invalid sorting range");
 
 	// 1. TODO do left, then do right
@@ -63,8 +69,9 @@ bool QuickSort::prove(std::vector<int>& a)
 	return true;
 }
 
-std::vector<int> QuickSort::createRandomData(uint64_t size)
+std::vector<int> QuickSort::createRandomData(int64_t size)
 {
+	assert((size >= 0) && "negative size");
 	std::vector<int> data;
 
 	// random gen
