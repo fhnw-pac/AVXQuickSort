@@ -1,5 +1,6 @@
 #include "QuickSort.h"
 #include <assert.h>
+#include <immintrin.h>
 
 constexpr int elemsIn256 = (sizeof(__m256i) / sizeof(int));
 
