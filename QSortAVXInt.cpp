@@ -7,9 +7,6 @@ constexpr int elemsIn256 = (sizeof(__m256i) / sizeof(int));
 // naive quicksort without tail recursion elimination
 void QuickSort::qSortNaive(std::vector<int>& a, int64_t beg, int64_t end)
 {
-	assert((beg >= 0) && "beg is negative");
-	assert((end >= 0) && "end is negative");
-
 	if (beg < end) {
 		int x = a[(beg + end) >> 1];
 		int64_t i = beg, j = end;
